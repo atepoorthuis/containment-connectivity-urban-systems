@@ -7,6 +7,6 @@ USER ${NB_USER}
 
 
 
-RUN wget https://github.com/atepoorthuis/containment-connectivity-urban-systems/raw/master/DESCRIPTION && R -e "options(repos = list(CRAN = 'http://mran.revolutionanalytics.com/snapshot/2019-11-09/')); devtools::install_deps()"
+RUN wget https://github.com/atepoorthuis/containment-connectivity-urban-systems/raw/master/DESCRIPTION && R -e "options(repos = list(CRAN = 'http://mran.revolutionanalytics.com/snapshot/2019-11-09/')); devtools::install_deps(); devtools::install()"
 
 RUN rm DESCRIPTION.1; exit 0

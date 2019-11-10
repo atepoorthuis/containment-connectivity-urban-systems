@@ -1,17 +1,34 @@
+Type: Compendium
 Package: tesgcontainmentconnectivity
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R:
-    person(given = "First",
-           family = "Last",
+Title: Compendium Package for Containment and Connectivity in Dutch Urban Systems
+Version: 0.0.1
+Authors@R: 
+    c(
+    person(given = "Ate",
+           family = "Poorthuis",
            role = c("aut", "cre"),
-           email = "first.last@example.com")
-Description: What the package does (one paragraph)
-License: MIT + file LICENSE
-ByteCompile: true
+           email = "ate_poorthuis@sutd.edu.sg"),
+    person(given = "Michiel",
+           family = "van Meeteren",
+           role = "aut",
+           email = "M.Van-Meeteren@lboro.ac.uk")
+Description: Compendium Package for Containment and Connectivity in Dutch Urban Systems
+License: MIT
+Depends: 
+    bookdown,
+    here,
+    igraph,
+    knitr,
+    mapview,
+    patchwork,
+    purrr,
+    rmapshaper,
+    rmarkdown,
+    sf,
+    tidyverse,
+    tmap
+Remotes: 
+    mtennekes/tmap@804eafd745f4ae1af163939a0eb626393ed70296,
+    thomasp85/patchwork@36b4918777c25393df605a4959a4c9690d2af186
 Encoding: UTF-8
 LazyData: true
-Imports: bookdown,
-    here
-Suggests: devtools,
-    git2r

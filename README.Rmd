@@ -20,12 +20,18 @@ Title <- "Containment and connectivity in Dutch urban systems: A network-analyti
 
 This repository contains the data and code for our paper:
 
-> Authors, (YYYY). _`r Title`_. Name of journal/book <https://doi.org/xxx/xxx>
+> Poorthuis, A and M. van Meeteren, (2019). _`r Title`_. Tijdschrift voor Economische en Sociale Geografie <https://doi.org/10.1111/tesg.12391>
 
 Our pre-print is online here:
 
-> Authors, (YYYY). _`r Title`_. Name of journal/book, Accessed `r format(Sys.Date(), "%d %b %Y")`. Online at <https://doi.org/xxx/xxx>
+> Poorthuis, A and M. van Meeteren, (2019). _`r Title`_. Tijdschrift voor Economische en Sociale Geografie, Accessed `r format(Sys.Date(), "%d %b %Y")`. Online at <https://doi.org/xxx/xxx>
 
+This repository contains all the data and code needed to reproduce the results and figures in our paper.
+
+- [analysis/01-prepare-network-data.Rmd](analysis/01-prepare-network-data.md): Prepare network data and perform community detection
+- [analysis/02-analysis-figures.Rmd](analysis/02-analysis-figures.md): Process the community detection results for the different urban systems and create the figures included in the paper.
+
+All necessary data can be found in `analysis/data/raw_data/`.
 
 ### How to download or install
 
