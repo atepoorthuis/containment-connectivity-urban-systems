@@ -29,52 +29,100 @@ isolates <- read_rds(here("analysis", "data", "derived_data", "isolate_postcodes
 ```
 
 ```{r message=F}
-dus <- read_csv(here("analysis", "data", "raw_data", "dus_pc_edges.csv"))
+dus <-
+  read_csv(here("analysis", "data", "raw_data", "dus_pc_edges.csv"))
 dus_com <- map(seq(0.10, 6, by = 0.10), function(i) {
-  tesgcontainmentconnectivity::com_extract(here("analysis", "data", "derived_data", "dus-communities", paste0("dus-", i, ".tree")))
+  tesgcontainmentconnectivity::com_extract(here(
+    "analysis",
+    "data",
+    "derived_data",
+    "dus-communities",
+    paste0("dus-", i, ".tree")
+  ))
 })
-dus_stats <- tibble(markov = seq(0.10, 6, by = 0.10), 
-                    members = map_int(dus_com, tesgcontainmentconnectivity::com_count),
-                    codeLength = map_chr(seq(0.10, 6, by = 0.10), function(i) {
-                      tesgcontainmentconnectivity::codeLength_extract(here("analysis", "data", "derived_data", "dus-communities", paste0("dus-", i, ".tree")))
-                    }),
-                    external = map_dbl(dus_com, function(com) tesgcontainmentconnectivity::com_external(com, totalFlow = dus, isolates = isolates)),
-                    externalMedian = map_dbl(dus_com, function(com) tesgcontainmentconnectivity::com_externalMedian(com, totalFlow = dus, isolates = isolates))
-) %>% 
+dus_stats <- tibble(
+  markov = seq(0.10, 6, by = 0.10),
+  members = map_int(dus_com, tesgcontainmentconnectivity::com_count),
+  codeLength = map_chr(seq(0.10, 6, by = 0.10), function(i) {
+    tesgcontainmentconnectivity::codeLength_extract(here(
+      "analysis",
+      "data",
+      "derived_data",
+      "dus-communities",
+      paste0("dus-", i, ".tree")
+    ))
+  }),
+  external = map_dbl(dus_com, function(com)
+    tesgcontainmentconnectivity::com_external(com, totalFlow = dus, isolates = isolates)),
+  externalMedian = map_dbl(dus_com, function(com)
+    tesgcontainmentconnectivity::com_externalMedian(com, totalFlow = dus, isolates = isolates))
+) %>%
   mutate(codeLength = as.numeric(codeLength))
 dus_stats    
 ```
 
 ```{r message=F}
-centralplace <- read_csv(here("analysis", "data", "raw_data", "centralplace_pc_edges.csv"))
+centralplace <-
+  read_csv(here("analysis", "data", "raw_data", "centralplace_pc_edges.csv"))
 cp_com <- map(seq(0.10, 7, by = 0.10), function(i) {
-  tesgcontainmentconnectivity::com_extract(here("analysis", "data", "derived_data", "cp-communities", paste0("cp-", i, ".tree")))
+  tesgcontainmentconnectivity::com_extract(here(
+    "analysis",
+    "data",
+    "derived_data",
+    "cp-communities",
+    paste0("cp-", i, ".tree")
+  ))
 })
 
-cp_stats <- tibble(markov = seq(0.10, 7, by = 0.10), 
-                   members = map_int(cp_com, tesgcontainmentconnectivity::com_count),
-                   codeLength = map_chr(seq(0.10, 7, by = 0.10), function(i) {
-                     tesgcontainmentconnectivity::codeLength_extract(here("analysis", "data", "derived_data", "cp-communities", paste0("cp-", i, ".tree")))
-                   }),
-                   external = map_dbl(cp_com, function(com) tesgcontainmentconnectivity::com_external(com, totalFlow = centralplace, isolates = isolates)),
-                   externalMedian = map_dbl(cp_com, function(com) tesgcontainmentconnectivity::com_externalMedian(com, totalFlow = centralplace, isolates = isolates))
-) %>% 
+cp_stats <- tibble(
+  markov = seq(0.10, 7, by = 0.10),
+  members = map_int(cp_com, tesgcontainmentconnectivity::com_count),
+  codeLength = map_chr(seq(0.10, 7, by = 0.10), function(i) {
+    tesgcontainmentconnectivity::codeLength_extract(here(
+      "analysis",
+      "data",
+      "derived_data",
+      "cp-communities",
+      paste0("cp-", i, ".tree")
+    ))
+  }),
+  external = map_dbl(cp_com, function(com)
+    tesgcontainmentconnectivity::com_external(com, totalFlow = centralplace, isolates = isolates)),
+  externalMedian = map_dbl(cp_com, function(com)
+    tesgcontainmentconnectivity::com_externalMedian(com, totalFlow = centralplace, isolates = isolates))
+) %>%
   mutate(codeLength = as.numeric(codeLength))
 cp_stats                  
 ```
 
 ```{r message=F}
-export <- read_csv(here("analysis", "data", "raw_data", "export_pc_edges.csv"))
+export <-
+  read_csv(here("analysis", "data", "raw_data", "export_pc_edges.csv"))
 ex_com <- map(seq(0.15, 7, by = 0.15), function(i) {
-  tesgcontainmentconnectivity::com_extract(here("analysis", "data", "derived_data", "ex-communities", paste0("ex-", i, ".tree")))
+  tesgcontainmentconnectivity::com_extract(here(
+    "analysis",
+    "data",
+    "derived_data",
+    "ex-communities",
+    paste0("ex-", i, ".tree")
+  ))
 })
-ex_stats <- tibble(markov = seq(0.15, 7, by = 0.15), 
-                   members = map_int(ex_com, tesgcontainmentconnectivity::com_count),
-                   codeLength = map_chr(seq(0.15, 7, by = 0.15), function(i) {
-                     tesgcontainmentconnectivity::codeLength_extract(here("analysis", "data", "derived_data", "ex-communities", paste0("ex-", i, ".tree")))
-                   }),
-                   external = map_dbl(ex_com, function(com) tesgcontainmentconnectivity::com_external(com, totalFlow = export, isolates = isolates)),
-                   externalMedian = map_dbl(ex_com, function(com) tesgcontainmentconnectivity::com_externalMedian(com, totalFlow = export, isolates = isolates))
+ex_stats <- tibble(
+  markov = seq(0.15, 7, by = 0.15),
+  members = map_int(ex_com, tesgcontainmentconnectivity::com_count),
+  codeLength = map_chr(seq(0.15, 7, by = 0.15), function(i) {
+    tesgcontainmentconnectivity::codeLength_extract(here(
+      "analysis",
+      "data",
+      "derived_data",
+      "ex-communities",
+      paste0("ex-", i, ".tree")
+    ))
+  }),
+  external = map_dbl(ex_com, function(com)
+    tesgcontainmentconnectivity::com_external(com, totalFlow = export, isolates = isolates)),
+  externalMedian = map_dbl(ex_com, function(com)
+    tesgcontainmentconnectivity::com_externalMedian(com, totalFlow = export, isolates = isolates))
 )
 ex_stats                  
 ```
@@ -206,21 +254,61 @@ dus_lines <- dus_flow %>%
 
 dus_outline <- tm_shape(dus_final_sf) + tm_borders(lwd = 0.9, col = "#383838")
 
-dus_fill <- tm_shape(dus_final_sf) + tm_fill(col = "outgoingRel", style = "jenks", palette = "YlGn", showNA = F,
-                                        legend.is.portrait = F, title = "% Outgoing Interaction") + 
-  tm_legend(legend.position = c("left", "bottom"), legend.width = 0.55,
-            legend.format = list(text.separator = "to", fun=function(x) paste0(formatC(x*100, digits=1, format="f"), "%")))
+dus_fill <-
+  tm_shape(dus_final_sf) + tm_fill(
+    col = "outgoingRel",
+    style = "jenks",
+    palette = "YlGn",
+    showNA = F,
+    legend.is.portrait = F,
+    title = "% Outgoing Interaction"
+  ) +
+  tm_legend(
+    legend.position = c("left", "bottom"),
+    legend.width = 0.55,
+    legend.format = list(
+      text.separator = "to",
+      fun = function(x)
+        paste0(formatC(
+          x * 100, digits = 1, format = "f"
+        ), "%")
+    )
+  )
 
-dus_fill_no_legend <- tm_shape(dus_final_sf) + 
-  tm_fill(col = "outgoingRel", palette = "YlGn",  showNA = F, n = 5,
-                                                  style = "jenks", 
-                                                  legend.is.portrait = F, title = "Incoming Interactions", legend.show = F) + 
-  tm_legend(legend.position = c("left", "bottom"), legend.width = 0.55)
+dus_fill_no_legend <- tm_shape(dus_final_sf) +
+  tm_fill(
+    col = "outgoingRel",
+    palette = "YlGn",
+    showNA = F,
+    n = 5,
+    style = "jenks",
+    legend.is.portrait = F,
+    title = "Incoming Interactions",
+    legend.show = F
+  ) +
+  tm_legend(legend.position = c("left", "bottom"),
+            legend.width = 0.55)
 
-dus_line_plot <- tm_shape(dus_lines) + tm_lines(col = "#B02430", lwd = "weight", alpha = 0.9, scale = 8, n = 5, legend.lwd.is.portrait = F,
-                                                title.lwd = "Estimation of daily commuting trips") +
- tm_legend(legend.position = c("left", "bottom"), legend.width = 0.55, 
-            legend.format = list(fun=function(x) formatC(x, digits=0, format="f"))) + tm_shape(dus_centroid %>% top_n(50, internal)) + tm_bubbles(col = "#B02430", size = 0.6, border.lwd = 0) + tm_text(text = "community", col = "white", size = 0.6)
+dus_line_plot <-
+  tm_shape(dus_lines) + tm_lines(
+    col = "#B02430",
+    lwd = "weight",
+    alpha = 0.9,
+    scale = 8,
+    n = 5,
+    legend.lwd.is.portrait = F,
+    title.lwd = "Estimation of daily commuting trips"
+  ) +
+  tm_legend(
+    legend.position = c("left", "bottom"),
+    legend.width = 0.55,
+    legend.format = list(
+      fun = function(x)
+        formatC(x, digits = 0, format = "f")
+    )
+  ) + tm_shape(dus_centroid %>% top_n(50, internal)) + tm_bubbles(col = "#B02430",
+                                                                  size = 0.6,
+                                                                  border.lwd = 0) + tm_text(text = "community", col = "white", size = 0.6)
 
 fig3a <- dus_fill + towns_plot + dus_outline + tm_layout(frame = F)
 fig3b <- dus_fill_no_legend + towns_plot + dus_outline + dus_line_plot + tm_layout(frame = F)
@@ -254,20 +342,54 @@ cp_lines <- cp_flow %>%
   mutate(geometry = st_combine(c(geometry.x, geometry.y)) %>% st_cast("LINESTRING")) %>% select(-geometry.x, -geometry.y) %>%
   st_as_sf(crs = 28992)
 
-cp_fill <- tm_shape(cp_final_sf) + tm_fill(col = "incoming",palette = "GnBu",  showNA = F, n = 5,
-                                      style = "jenks", 
-                                      legend.is.portrait = F, title = "Incoming Interactions") + 
-  tm_legend(legend.position = c("left", "bottom"), legend.width = 0.55)
-cp_outline <- tm_shape(cp_final_sf) + tm_borders(lwd = 0.9, col = "#383838")
+cp_fill <-
+  tm_shape(cp_final_sf) + tm_fill(
+    col = "incoming",
+    palette = "GnBu",
+    showNA = F,
+    n = 5,
+    style = "jenks",
+    legend.is.portrait = F,
+    title = "Incoming Interactions"
+  ) +
+  tm_legend(legend.position = c("left", "bottom"),
+            legend.width = 0.55)
+cp_outline <-
+  tm_shape(cp_final_sf) + tm_borders(lwd = 0.9, col = "#383838")
 
-cp_fill_no_legend <- tm_shape(cp_final_sf) + tm_fill(col = "incoming",palette = "GnBu",  showNA = F, n = 5,
-                                                style = "jenks", 
-                                                legend.is.portrait = F, title = "Incoming Interactions", legend.show = F) + 
-  tm_legend(legend.position = c("left", "bottom"), legend.width = 0.55)
-cp_line_plot <- tm_shape(cp_lines) + tm_lines(col = "#B02430", lwd = "weight", alpha = 0.9, scale = 7, n = 5, legend.lwd.is.portrait = F,
-                                              title.lwd = "Estimation of daily shopping trips") +
-  tm_legend(legend.position = c("left", "bottom"), legend.width = 0.55, 
-            legend.format = list(fun=function(x) formatC(x, digits=0, format="f"))) + tm_shape(cp_centroid %>% top_n(50, internal)) + tm_bubbles(col = "#B02430", size = 0.6, border.lwd = 0) + tm_text(text = "community", col = "white", size = 0.6)
+cp_fill_no_legend <-
+  tm_shape(cp_final_sf) + tm_fill(
+    col = "incoming",
+    palette = "GnBu",
+    showNA = F,
+    n = 5,
+    style = "jenks",
+    legend.is.portrait = F,
+    title = "Incoming Interactions",
+    legend.show = F
+  ) +
+  tm_legend(legend.position = c("left", "bottom"),
+            legend.width = 0.55)
+cp_line_plot <-
+  tm_shape(cp_lines) + tm_lines(
+    col = "#B02430",
+    lwd = "weight",
+    alpha = 0.9,
+    scale = 7,
+    n = 5,
+    legend.lwd.is.portrait = F,
+    title.lwd = "Estimation of daily shopping trips"
+  ) +
+  tm_legend(
+    legend.position = c("left", "bottom"),
+    legend.width = 0.55,
+    legend.format = list(
+      fun = function(x)
+        formatC(x, digits = 0, format = "f")
+    )
+  ) + tm_shape(cp_centroid %>% top_n(50, internal)) + tm_bubbles(col = "#B02430",
+                                                                 size = 0.6,
+                                                                 border.lwd = 0) + tm_text(text = "community", col = "white", size = 0.6)
 
 fig4a <- cp_fill + towns_plot + cp_outline + tm_layout(frame = F)
 fig4b <- cp_fill_no_legend + towns_plot + cp_outline + cp_line_plot + tm_layout(frame = F)
@@ -300,20 +422,60 @@ ex_lines <- ex_flow %>%
   mutate(geometry = st_combine(c(geometry.x, geometry.y)) %>% st_cast("LINESTRING")) %>% select(-geometry.x, -geometry.y) %>%
   st_as_sf(crs = 28992)
 
-ex_fill <- tm_shape(ex_final_sf) + tm_fill(col = "outgoingRel", style = "jenks", palette = "RdPu", showNA = F,
-                                      legend.is.portrait = F, title = "% Outgoing Interaction") + 
-  tm_legend(legend.position = c("left", "bottom"), legend.width = 0.55,
-            legend.format = list(text.separator = "to", fun=function(x) paste0(formatC(x*100, digits=1, format="f"), "%")))
+ex_fill <-
+  tm_shape(ex_final_sf) + tm_fill(
+    col = "outgoingRel",
+    style = "jenks",
+    palette = "RdPu",
+    showNA = F,
+    legend.is.portrait = F,
+    title = "% Outgoing Interaction"
+  ) +
+  tm_legend(
+    legend.position = c("left", "bottom"),
+    legend.width = 0.55,
+    legend.format = list(
+      text.separator = "to",
+      fun = function(x)
+        paste0(formatC(
+          x * 100, digits = 1, format = "f"
+        ), "%")
+    )
+  )
 
-ex_outline <- tm_shape(ex_final_sf) + tm_borders(lwd = 0.9, col = "#383838")
+ex_outline <-
+  tm_shape(ex_final_sf) + tm_borders(lwd = 0.9, col = "#383838")
 
-ex_fill_no_legend <- tm_shape(ex_final_sf) + tm_fill(col = "outgoingRel", style = "jenks", palette = "RdPu", showNA = F,
-                                                legend.is.portrait = F, title = "% Outgoing Interaction", legend.show = F)
-ex_line_plot <- tm_shape(ex_lines) + tm_lines(col = "#B02430", lwd = "weight", alpha = 0.9, scale = 7, n = 5, legend.lwd.is.portrait = F,
-                                              title.lwd = "Estimation of daily business trips") +
-  tm_legend(legend.position = c("left", "bottom"), legend.width = 0.55, 
-            legend.format = list(fun=function(x) formatC(x, digits=0, format="f"))) + tm_shape(ex_centroid) + tm_bubbles(col = "#B02430", size = 0.6, border.lwd = 0) + tm_text(text = "community", col = "white", size = 0.6)
-
+ex_fill_no_legend <-
+  tm_shape(ex_final_sf) + tm_fill(
+    col = "outgoingRel",
+    style = "jenks",
+    palette = "RdPu",
+    showNA = F,
+    legend.is.portrait = F,
+    title = "% Outgoing Interaction",
+    legend.show = F
+  )
+ex_line_plot <-
+  tm_shape(ex_lines) + tm_lines(
+    col = "#B02430",
+    lwd = "weight",
+    alpha = 0.9,
+    scale = 7,
+    n = 5,
+    legend.lwd.is.portrait = F,
+    title.lwd = "Estimation of daily business trips"
+  ) +
+  tm_legend(
+    legend.position = c("left", "bottom"),
+    legend.width = 0.55,
+    legend.format = list(
+      fun = function(x)
+        formatC(x, digits = 0, format = "f")
+    )
+  ) + tm_shape(ex_centroid) + tm_bubbles(col = "#B02430",
+                                         size = 0.6,
+                                         border.lwd = 0) + tm_text(text = "community", col = "white", size = 0.6)
 
 fig5a <- ex_fill + towns_plot + ex_outline + tm_layout(frame = F)
 fig5b <- ex_fill_no_legend + towns_plot + ex_outline + ex_line_plot + tm_layout(frame = F)
@@ -400,15 +562,29 @@ pc_wallace <- left_join(t_ex, t_cp, by = c("pc4" = "pc4")) %>%
 
 ex_outline_thick <- tm_shape(ex_final_sf) + tm_borders(lwd = 1, col = "black")
 
-wallace_fill <- tm_shape(pc_wallace) + tm_fill(col = "mean_wall" ,palette = "-BuPu", style = "jenks",  
-                                               legend.is.portrait = F, title = "Mean Wallace I Index") + 
-  tm_legend(legend.position = c("left", "bottom"), legend.width = 0.55)
+wallace_fill <-
+  tm_shape(pc_wallace) + tm_fill(
+    col = "mean_wall" ,
+    palette = "-BuPu",
+    style = "jenks",
+    legend.is.portrait = F,
+    title = "Mean Wallace I Index"
+  ) +
+  tm_legend(legend.position = c("left", "bottom"),
+            legend.width = 0.55)
 
 fig7a <- wallace_fill + towns_plot + ex_outline_thick + tm_layout(frame = F)
 
-wallace_binary <- tm_shape(pc_wallace) + tm_fill(col = "mean_wall", palette = c("#810f7c", "#edf8fb"), breaks = c(0, 0.95, 1),  
-                                                 legend.is.portrait = F, title = "Mean Wallace I Index") + 
-  tm_legend(legend.position = c("left", "bottom"), legend.width = 0.55)
+wallace_binary <-
+  tm_shape(pc_wallace) + tm_fill(
+    col = "mean_wall",
+    palette = c("#810f7c", "#edf8fb"),
+    breaks = c(0, 0.95, 1),
+    legend.is.portrait = F,
+    title = "Mean Wallace I Index"
+  ) +
+  tm_legend(legend.position = c("left", "bottom"),
+            legend.width = 0.55)
 
 fig7b <- wallace_binary + towns_plot + ex_outline_thick + tm_layout(frame = F)
 
