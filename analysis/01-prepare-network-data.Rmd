@@ -3,8 +3,6 @@ title: "Prepare network data"
 author: "Ate Poorthuis"
 date: "11/9/2019"
 output: github_document
-editor_options: 
-  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -73,6 +71,8 @@ isolates <- full_join(source, sink) %>%
   mutate(total = incoming + outgoing) %>% 
   filter(total < 2) %>% 
   select(postcode)
+
+write_rds(isolates, here("analysis", "data", "derived_data", "isolate_postcodes.rds"))
 ```
 
 ## Create network data & run community detection
