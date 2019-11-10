@@ -48,7 +48,7 @@ mapview::mapview(postcode)
 ```
 
 ## Determine 'isolates'
-We need to determine which postcodes are 'isolates'. These are generally postcodes with very few trips going in or out (<= 10, even over the 14 years of the household travel survey). If we don't treat these, they will end up as isolates during the subsequent community detection procedure and will make the results + maps difficult to interpret.
+We need to determine which postcodes are 'isolates'. These are generally postcodes with very few trips going in or out (<= 10, even over the 14 years of the household travel survey). If we don't treat these, they will end up as isolates on the map and thus will make the results + maps difficult to interpret (merging procedure included in `02-analysis-figures.Rmd`.
 
 ```{r}
 postcode_list <- postcode %>% st_set_geometry(NULL) %>% as_tibble() %>% rename(postcode = pc4)
