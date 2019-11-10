@@ -100,23 +100,6 @@ com_externalMedian <- function(com, totalFlow, isolates) {
     .$median
 }
 
-#' Merge polygons in a sf object based on community membership
-#'
-#' @param com community identifier
-#' @param sf sf object with all spatial polygons
-#' @param index index reflecting position of specific community set in sequential list of markov times
-#'
-#' @return
-#' @export
-comm_merge <- function(com, sf, index) {
-  sf %>%
-    left_join(com, by = c("pc4" = "name")) %>%
-    drop_na(community) %>%
-    group_by(community) %>%
-    summarise() %>%
-    mutate(index = index)
-}
-
 #' Extract codelength from Infomap output
 #'
 #' @param filename path to infomap tree file
