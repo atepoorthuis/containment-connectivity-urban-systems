@@ -9,16 +9,17 @@ This repository contains the data and code for our paper:
 
 > Poorthuis, A and M. van Meeteren, (2019). *Containment and
 > connectivity in Dutch urban systems: A network-analytical
-> operationalization of the three-systems model.*. Tijdschrift voor
-> Economische en Sociale Geografie <https://doi.org/10.1111/tesg.12391>
+> operationalization of the three-systems model*. Tijdschrift voor
+> Economische en Sociale Geografie. Online at
+> <https://doi.org/10.1111/tesg.12391>
 
 Our pre-print is online here:
 
 > Poorthuis, A and M. van Meeteren, (2019). *Containment and
 > connectivity in Dutch urban systems: A network-analytical
-> operationalization of the three-systems model.*. Tijdschrift voor
-> Economische en Sociale Geografie, Accessed 10 Nov 2019. Online at
-> <https://doi.org/xxx/xxx>
+> operationalization of the three-systems model*. Tijdschrift voor
+> Economische en Sociale Geografie, Accessed 20 Nov 2019. Online at
+> <https://doi.org/10.31235/osf.io/y7dxf>
 
 This repository contains all the data and code needed to reproduce the
 results and figures in our

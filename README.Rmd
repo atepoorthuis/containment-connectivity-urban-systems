@@ -11,7 +11,7 @@ knitr::opts_chunk$set(
   fig.path = "README-"
 )
 # Please put your title here to include it in the file below.
-Title <- "Containment and connectivity in Dutch urban systems: A network-analytical operationalization of the three-systems model."
+Title <- "Containment and connectivity in Dutch urban systems: A network-analytical operationalization of the three-systems model"
 ```
 
 # tesgcontainmentconnectivity
@@ -20,11 +20,11 @@ Title <- "Containment and connectivity in Dutch urban systems: A network-analyti
 
 This repository contains the data and code for our paper:
 
-> Poorthuis, A and M. van Meeteren, (2019). _`r Title`_. Tijdschrift voor Economische en Sociale Geografie <https://doi.org/10.1111/tesg.12391>
+> Poorthuis, A and M. van Meeteren, (2019). _`r Title`_. Tijdschrift voor Economische en Sociale Geografie. Online at <https://doi.org/10.1111/tesg.12391>
 
 Our pre-print is online here:
 
-> Poorthuis, A and M. van Meeteren, (2019). _`r Title`_. Tijdschrift voor Economische en Sociale Geografie, Accessed `r format(Sys.Date(), "%d %b %Y")`. Online at <https://doi.org/xxx/xxx>
+> Poorthuis, A and M. van Meeteren, (2019). _`r Title`_. Tijdschrift voor Economische en Sociale Geografie, Accessed `r format(Sys.Date(), "%d %b %Y")`. Online at <https://doi.org/10.31235/osf.io/y7dxf>
 
 This repository contains all the data and code needed to reproduce the results and figures in our paper.
 
