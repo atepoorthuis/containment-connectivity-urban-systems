@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# tesgcontainmentconnectivity
+# Compendium Package for Containment and Connectivity in Dutch Urban Systems
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/atepoorthuis/containment-connectivity-urban-systems/master?urlpath=rstudio)
 [![DOI](https://zenodo.org/badge/220612499.svg)](https://zenodo.org/badge/latestdoi/220612499)

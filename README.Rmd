@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 Title <- "Containment and connectivity in Dutch urban systems: A network-analytical operationalization of the three-systems model"
 ```
 
-# tesgcontainmentconnectivity
+# Compendium Package for Containment and Connectivity in Dutch Urban Systems
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/atepoorthuis/containment-connectivity-urban-systems/master?urlpath=rstudio)
 [![DOI](https://zenodo.org/badge/220612499.svg)](https://zenodo.org/badge/latestdoi/220612499)
